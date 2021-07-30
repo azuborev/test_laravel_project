@@ -8,14 +8,25 @@ class ScoreService
 {
 	private $wordSearchApiProxy;
 
-	public function __construct( WordSearchApiProxy $wordSearchApiProxy ){
+	public function __construct( WordSearchApiProxy $wordSearchApiProxy ) {
+
 		$this->wordSearchApiProxy = $wordSearchApiProxy;
 	}
 
     public function getTermScore( string $termName ) {
-		$positiveCount = $this->wordSearchApiProxy->getRocksCount( $termName );
-		$negativeCount = $this->wordSearchApiProxy->getSucksCount( $termName );
-//		return $positiveCount;
+
+		$term = new Term();
+		$termScore = $term->getScore( $termName );
+
+		$positiveWordCount = $this->wordSearchApiProxy->getRocksCount( $termName );
+		$negativeWordCount = $this->wordSearchApiProxy->getSucksCount( $termName );
+		$termScore         = $this->scoreCalculate( $positiveWordCount, $negativeWordCount );
+	    $term->scoreInsert( $termName, $termScore );
+		return $termScore;
     }
 
+    protected function scoreCalculate( $positiveWordCount, $negativeWordCount ) {
+
+		return round( $positiveWordCount / ( $negativeWordCount + $positiveWordCount ), 2 );
+    }
 }

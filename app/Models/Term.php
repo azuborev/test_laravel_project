@@ -18,4 +18,13 @@ class Term extends Model
         'name',
         'score',
     ];
+
+	public function getScore( string $termName ) {
+
+		return $this->select( 'score' )->where( 'name', $termName )->get();
+	}
+
+	public function scoreInsert( string $termName, float $termScore ) {
+
+	}
 }
