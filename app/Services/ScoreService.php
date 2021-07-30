@@ -6,15 +6,15 @@ use App\Models\Term;
 
 class ScoreService
 {
-	private $apiInterface;
+	private $wordSearchApiProxy;
 
-	public function __construct( ApiInterface $apiInteface ){
-		$this->apiInterface = $apiInteface;
+	public function __construct( WordSearchApiProxy $wordSearchApiProxy ){
+		$this->wordSearchApiProxy = $wordSearchApiProxy;
 	}
 
     public function getTermScore( string $termName ) {
-		$positiveCount = $this->apiInterface->getRocksCount( $termName );
-		$negativeCount = $this->apiInterface->getSucksCount( $termName );
+		$positiveCount = $this->wordSearchApiProxy->getRocksCount( $termName );
+		$negativeCount = $this->wordSearchApiProxy->getSucksCount( $termName );
 //		return $positiveCount;
     }
 

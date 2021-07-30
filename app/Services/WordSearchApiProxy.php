@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface ApiInterface {
+interface WordSearchApiProxy {
 
 	public function getRocksCount(string $termName);
 	public function getSucksCount(string $termName);
