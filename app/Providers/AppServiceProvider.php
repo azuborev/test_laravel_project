@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\GitHubApi;
-use App\Services\WordSearchApiProxy;
+use App\Services\Api\GitHubApi;
+use App\Services\Api\Interfaces\WordSearchApiProxy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

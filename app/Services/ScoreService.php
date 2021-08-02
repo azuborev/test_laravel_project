@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Term;
+use App\Services\Api\Interfaces\WordSearchApiProxy;
 
 class ScoreService
 {
