@@ -19,6 +19,8 @@ class Term extends Model
         'score',
     ];
 
+	public $timestamps = false;
+
 	public function getScore( string $termName ) {
 
 		return $this->select( 'score' )->where( 'name', $termName )->get();
@@ -26,5 +28,9 @@ class Term extends Model
 
 	public function scoreInsert( string $termName, float $termScore ) {
 
+		$this->name  = $termName;
+		$this->score = $termScore;
+
+		return $this->save();
 	}
 }

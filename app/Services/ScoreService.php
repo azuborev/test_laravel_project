@@ -16,8 +16,13 @@ class ScoreService
 
     public function getTermScore( string $termName ) {
 
-		$term = new Term();
+		$term      = new Term();
 		$termScore = $term->getScore( $termName );
+
+		if ( isset( $termScore->score ) ) {
+
+			return $termScore->score;
+	    }
 
 		$positiveWordCount = $this->wordSearchApiProxy->getRocksCount( $termName );
 		$negativeWordCount = $this->wordSearchApiProxy->getSucksCount( $termName );
