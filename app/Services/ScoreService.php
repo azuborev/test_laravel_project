@@ -27,7 +27,8 @@ class ScoreService
 		$positiveWordCount = $this->wordSearchApiProxy->getRocksCount( $termName );
 		$negativeWordCount = $this->wordSearchApiProxy->getSucksCount( $termName );
 		$termScore         = $this->scoreCalculate( $positiveWordCount, $negativeWordCount );
-	    $term->scoreInsert( $termName, $termScore );
+		$term->scoreInsert( $termName, $termScore );
+
 		return $termScore;
     }
 

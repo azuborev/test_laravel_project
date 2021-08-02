@@ -23,7 +23,7 @@ class Term extends Model
 
 	public function getScore( string $termName ) {
 
-		return $this->select( 'score' )->where( 'name', $termName )->get();
+		return $this->select( 'score' )->where( 'name', $termName )->first();
 	}
 
 	public function scoreInsert( string $termName, float $termScore ) {
