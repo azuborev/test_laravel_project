@@ -8,7 +8,8 @@ use App\Services\ScoreService;
 
 class ScoreController extends Controller
 {
-	public function getScore( Request $request, ScoreService $scoreService ) {
+	public function getScore( Request $request, ScoreService $scoreService )
+	{
 
 			if ( $request->filled( 'term' ) ) {
 

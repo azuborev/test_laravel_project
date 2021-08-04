@@ -1,32 +1,31 @@
 <?php
 
 
-namespace App\Services\Api;
+namespace App\Services;
 
-use App\Services\Api\Interfaces\WordSearchApiProxy;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\RequestException;
 
-class GitHubApi implements WordSearchApiProxy
+class GitHubScoreService extends ScoreService
 {
 
 	/**
 	 * @throws RequestException
 	 */
-	public function getRocksCount( string $termName ) {
+	public function getTermRocksCount() {
 
 		return Http::get('https://api.github.com/search/issues', [
-			'q' => $termName . '+rocks',
+			'q' => $this->termName . '+rocks',
 		])->throw()->json('total_count');
 	}
 
 	/**
 	 * @throws RequestException
 	 */
-	public function getSucksCount( string $termName ) {
+	public function getTermSucksCount() {
 
 		return Http::get('https://api.github.com/search/issues', [
-			'q' => $termName . '+sucks',
+			'q' => $this->termName . '+sucks',
 		])->throw()->json('total_count');
 	}
 }

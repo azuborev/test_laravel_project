@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\Api\GitHubApi;
-use App\Services\Api\Interfaces\WordSearchApiProxy;
+use App\Services\GitHubScoreService;
+use App\Services\ScoreService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(WordSearchApiProxy::class, GitHubApi::class);
+        $this->app->singleton(ScoreService::class, GitHubScoreService::class);
     }
 
     /**
