@@ -12,7 +12,7 @@ class GitHubScoreService extends ScoreService
 	/**
 	 * @throws RequestException
 	 */
-	public function getTermRocksCount( $termName ) {
+	public function getTermRocksCount( string $termName ) {
 
 		return Http::get('https://api.github.com/search/issues', [
 			'q' => $termName . '+rocks',
@@ -22,7 +22,7 @@ class GitHubScoreService extends ScoreService
 	/**
 	 * @throws RequestException
 	 */
-	public function getTermSucksCount( $termName ) {
+	public function getTermSucksCount( string $termName ) {
 
 		return Http::get('https://api.github.com/search/issues', [
 			'q' => $termName . '+sucks',

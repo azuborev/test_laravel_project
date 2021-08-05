@@ -7,7 +7,7 @@ use App\Models\Term;
 abstract class ScoreService
 {
 
-	public function getTermScore( $termName )
+	public function getTermScore( string $termName )
 	{
 
 		$term      = new Term();
@@ -24,7 +24,7 @@ abstract class ScoreService
 		return $termScore;
 	}
 
-	protected function termScoreCalculate( $termName )
+	protected function termScoreCalculate( string $termName )
 	{
 		$positiveWordCount = $this->getTermRocksCount( $termName );
 		$negativeWordCount = $this->getTermSucksCount( $termName );
@@ -32,7 +32,7 @@ abstract class ScoreService
 		return round( $positiveWordCount / ( $negativeWordCount + $positiveWordCount ), 2 );
 	}
 
-	abstract protected function getTermRocksCount( $termName );
-	abstract protected function getTermSucksCount( $termName );
+	abstract protected function getTermRocksCount( string $termName );
+	abstract protected function getTermSucksCount( string $termName );
 
 }
