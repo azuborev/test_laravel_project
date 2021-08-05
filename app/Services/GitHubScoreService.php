@@ -12,20 +12,20 @@ class GitHubScoreService extends ScoreService
 	/**
 	 * @throws RequestException
 	 */
-	public function getTermRocksCount() {
+	public function getTermRocksCount( $termName ) {
 
 		return Http::get('https://api.github.com/search/issues', [
-			'q' => $this->termName . '+rocks',
+			'q' => $termName . '+rocks',
 		])->throw()->json('total_count');
 	}
 
 	/**
 	 * @throws RequestException
 	 */
-	public function getTermSucksCount() {
+	public function getTermSucksCount( $termName ) {
 
 		return Http::get('https://api.github.com/search/issues', [
-			'q' => $this->termName . '+sucks',
+			'q' => $termName . '+sucks',
 		])->throw()->json('total_count');
 	}
 }

@@ -7,35 +7,32 @@ use App\Models\Term;
 abstract class ScoreService
 {
 
-	protected $termName;
-
-	public function getTermScore( $termName ) {
-
-        $this->termName = $termName;
+	public function getTermScore( $termName )
+	{
 
 		$term      = new Term();
-		$termScore = $term->getScore( $this->termName );
+		$termScore = $term->getScore( $termName );
 
 		if ( isset( $termScore->score ) ) {
 
 			return $termScore->score;
 		}
 
-		$termScore = $this->termScoreCalculate();
-		$term->scoreInsert( $this->termName, $termScore );
+		$termScore = $this->termScoreCalculate( $termName );
+		$term->scoreInsert( $termName, $termScore );
 
 		return $termScore;
 	}
 
-	protected function termScoreCalculate()
+	protected function termScoreCalculate( $termName )
 	{
-		$positiveWordCount = $this->getTermRocksCount();
-		$negativeWordCount = $this->getTermSucksCount();
+		$positiveWordCount = $this->getTermRocksCount( $termName );
+		$negativeWordCount = $this->getTermSucksCount( $termName );
 
 		return round( $positiveWordCount / ( $negativeWordCount + $positiveWordCount ), 2 );
 	}
 
-	abstract protected function getTermRocksCount();
-	abstract protected function getTermSucksCount();
+	abstract protected function getTermRocksCount( $termName );
+	abstract protected function getTermSucksCount( $termName );
 
 }
